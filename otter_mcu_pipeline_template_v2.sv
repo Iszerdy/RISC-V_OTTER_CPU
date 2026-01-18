@@ -1,24 +1,4 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:  J. Callenes
-// 
-// Create Date: 01/04/2019 04:32:12 PM
-// Design Name: 
-// Module Name: PIPELINED_OTTER_CPU
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
- 
+`timescale 1ns / 1ps 
 typedef enum logic [6:0] {
        LUI      = 7'b0110111,
        AUIPC    = 7'b0010111,
@@ -111,19 +91,14 @@ module OTTER(input CLK,
     logic [31:0] MEMDIN2;
     logic [4:0] HOLD_rd_addr;
     logic [31:0] HOLD_rfIn;
-    
-           
+        
     logic [31:0] SRC_A;
     logic [31:0] SRC_B;
     logic [31:0] de_ex_rs1, de_ex_rs2;
-    
-    
-    
+   
     //pipeline registers
     instr_t if_de_inst, de_ex_inst, ex_mem_inst, mem_wb_inst;
-        
-    
-              
+            
 //==== Instruction Fetch =================================================================================================================
 
      logic STALL;
@@ -189,7 +164,7 @@ module OTTER(input CLK,
         .miss(miss)
     );
     
-    imem imem(      //typo -imem not imen
+    imem imem(      
         .a(pc),
         .w0(w0),
         .w1(w1),
@@ -200,24 +175,6 @@ module OTTER(input CLK,
         .w6(w6),
         .w7(w7)
     );
-    /*
-    // Old mem before cache
-     Memory OTTER_MEMORY (
-        .MEM_CLK(CLK),
-        .MEM_RDEN1(memRead1),
-        .MEM_RDEN2(ex_mem_inst.memRead2),
-        .MEM_WE2(ex_mem_inst.memWrite),
-        .MEM_ADDR1(pc),
-        .MEM_ADDR2(MEM_alu_result), //ex_mem_inst.reg1?
-        .MEM_DIN2(MEM_rs2), 
-        .MEM_SIZE(ex_mem_inst.ir[13:12]),
-        .MEM_SIGN(ex_mem_inst.ir[14]),
-        .IO_IN(IOBUS_IN),
-        .IO_WR(IOBUS_WR),
-        .MEM_DOUT1(IR),
-        .MEM_DOUT2(dout2)
-    );
-     */
      
      Memory OTTER_MEMORY(
     .MEM_CLK(CLK),
@@ -354,19 +311,7 @@ module OTTER(input CLK,
     logic [1:0] DEC_fsel2;
     logic [6:0] ex_opcode;
     assign ex_opcode = de_ex_inst.ir[6:0];
-    
-        /*
-    BCG branch_cond_gen(
-        .RS1(fwd_mux_A),
-        .RS2(fwd_mux_B),
-        .BR_EQ(br_eq),
-        .BR_LT(br_lt),
-        .BR_LTU(br_ltu)
-    );
-    */
-
-    
-    
+ 
     Modified_BCG BCG (
         .RS1(fwd_mux_A),
         .RS2(fwd_mux_B),
@@ -397,8 +342,7 @@ module OTTER(input CLK,
         .STALL(hazard_cnt_stall),
         .FLUSH(FLUSH)
     );
-
-     
+   
     // AluA_fwd_mux
     always_comb begin
         case (fsel1)
@@ -428,7 +372,6 @@ module OTTER(input CLK,
         .RESULT(EX_alu_result)
     );
     
-
     // EX/MEM Pipeline Register
     always_ff @(posedge CLK) begin
         ex_mem_inst <= de_ex_inst;
@@ -437,8 +380,6 @@ module OTTER(input CLK,
         MEM_rs1 <= fwd_mux_A;
         MEM_rs2 <= fwd_mux_B;
      end
-
-
 //==== Memory =================================================================================================================
     assign IOBUS_ADDR = MEM_alu_result;
     assign IOBUS_OUT = MEM_rs2;
@@ -478,11 +419,8 @@ module OTTER(input CLK,
                 rfIn = 32'hDEADDEAD;
         endcase
     end
- 
- 
+  
     always_ff @ (posedge CLK) begin
         HOLD_rd_addr <= mem_wb_inst.rd_addr;
     end
-       
-            
 endmodule

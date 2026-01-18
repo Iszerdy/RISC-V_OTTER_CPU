@@ -1,17 +1,11 @@
 `timescale 1ns / 1ps
 /////////////////////////////////////////////////////////////////////////////
-// Company:
 // Engineer: J. Calllenes n
 //           P. Hummel
-//
 // Create Date: 01/20/2019 10:36:50 AM
 // Module Name: OTTER_Wrapper
 // Target Devices: OTTER MCU on Basys3
 // Description: OTTER_WRAPPER with Switches, LEDs, and 7-segment display
-//
-// Revision:
-// Revision 0.01 - File Created
-// Revision 0.02 - Updated MMIO Addresses, signal names
 /////////////////////////////////////////////////////////////////////////////
 
 module OTTER_Wrapper(
@@ -25,13 +19,9 @@ module OTTER_Wrapper(
 
        
     // INPUT PORT IDS ///////////////////////////////////////////////////////
-    // Right now, the only possible inputs are the switches
-    // In future labs you can add more MMIO, and you'll have
-    // to add constants here for the mux below
     localparam SWITCHES_AD = 32'h11000000;
            
     // OUTPUT PORT IDS //////////////////////////////////////////////////////
-    // In future labs you can add more MMIO
     localparam LEDS_AD    = 32'h11000020; //32'h11000020
     localparam SSEG_AD    = 32'h11000040; //32'h11000040
     
@@ -58,11 +48,7 @@ module OTTER_Wrapper(
                        .CATHODES(CATHODES), .ANODES(ANODES));
    
                            
-   // Clock Divider to create 50 MHz Clock //////////////////////////////////
-   //always_ff @(posedge CLK) begin
-       //clk_50 <= ~clk_50;
-   //end     --this is orginal code
- 
+
 //FJ added below to generate clk_50 and s_resetn_CLK
    always_ff @(posedge CLK) begin
      if (BTNC == 1'b0)
@@ -129,3 +115,4 @@ module OTTER_Wrapper(
     end
    
    endmodule
+

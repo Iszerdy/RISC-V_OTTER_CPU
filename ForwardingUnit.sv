@@ -1,12 +1,11 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: Cal Poly San Luis Obispo
-// Engineer: Diego Curiel
-// Create Date: 02/09/2023 11:30:51 AM
-// Module Name: BCG
-//////////////////////////////////////////////////////////////////////////////////
 // forwarding_unit
 // Detects data hazards and generates forwarding controls
+// Module Name: BCG
+//////////////////////////////////////////////////////////////////////////////////
+
 module ForwardingUnit(
     input  logic [4:0] DE_EX_rs1,
     input  logic [4:0] DE_EX_rs2,
@@ -34,4 +33,5 @@ module ForwardingUnit(
             forwardB = 2'b01;
     end
 endmodule
+
 

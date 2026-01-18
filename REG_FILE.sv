@@ -1,14 +1,9 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: California Polytechnic University, San Luis Obispo
-// Engineer: Diego Curiel
-// Create Date: 01/31/2023 09:24:40 AM
 // Module Name: REG_FILE
 // Project Name: OTTER
-//////////////////////////////////////////////////////////////////////////////////
-
-
-        
+//////////////////////////////////////////////////////////////////////////////////        
 module REG_FILE(
     input logic CLK,
     input logic EN,
@@ -28,8 +23,7 @@ module REG_FILE(
         for (i=0; i<32; i=i+1) begin
             RAM[i] = 0;
         end
-    end
-    
+    end   
     
     always_ff @ (negedge CLK) begin           
     
@@ -40,13 +34,8 @@ module REG_FILE(
             RAM[WA] <= RAM[WA];
             
     end
-    
-    
 
     assign RS1 = RAM[ADR1];
     assign RS2 = RAM[ADR2];
-    
-    
-    
-    
+
 endmodule

@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: Cal Poly San Luis Obispo 
-// Engineer: Diego Curiel
-// Create Date: 02/09/2023 12:41:17 PM
 // Module Name: BAG (Branch Address Generator)
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -25,3 +23,4 @@ module BAG (
     assign BRANCH = FROM_PC + B_TYPE;
 
 endmodule
+

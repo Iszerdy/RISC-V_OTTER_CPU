@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: California Polytechnic University, San Luis Obispo
-// Engineer: Diego Renato Curiel
-// Create Date: 01/24/2023 09:30:07 AM
 // Module Name: PC
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -25,5 +23,6 @@ module PC(
             end
                     
     end
+
 
 endmodule

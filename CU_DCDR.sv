@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: California Polytechnic University, San Luis Obispo
-// Engineer: Diego Renato Curiel
-// Create Date: 02/23/2023 09:39:49 AM
 // Module Name: CU_DCDR
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -218,4 +216,5 @@ module CU_DCDR(
             end
         endcase
     end
+
 endmodule       
